@@ -1,4 +1,4 @@
-class AddThread {
+class GetThread {
     constructor (payload) {
       this._verifyPayload(payload)
   
@@ -25,4 +25,4 @@ class AddThread {
     }
 }
   
-module.exports = AddThread
+module.exports = GetThread

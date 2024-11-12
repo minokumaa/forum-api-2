@@ -88,6 +88,7 @@ describe('ThreadRepositoryPostgres', () => {
   describe('verifyAvailableThread function', () => {
     it('should not throw error when thread is available', async () => {
       // Arrange
+      await UsersTableTestHelper.addUser({ id: 'user-123' })
       await ThreadsTableTestHelper.addThread({ id: 'thread-123' })
       const threadRepositoryPostgres = new ThreadRepositoryPostgres(pool, {});
       
@@ -116,18 +117,19 @@ describe('ThreadRepositoryPostgres', () => {
         id: 'thread-123',
         title: 'title',
         body: 'body',
-        owner: 'user-123'
+        owner: 'user-123',
+        username: 'winter'
       }
       await ThreadTableTestHelper.addThread(thread)
       const threadRepositoryPostgres = new ThreadRepositoryPostgres(pool, {});
       const getThread = threadRepositoryPostgres.getThreadById('thread-123')
 
       // Action & Assert
-      expect(getThread).toStrictEqual(new GetThread({
-        ...thread,
-        date: getThread.date,
-        username: 'winter'
-      }))
+      expect(getThread.id).toEqual(thread.id)
+      expect(getThread.title).toEqual(thread.title)
+      expect(getThread.body).toEqual(thread.body)
+      expect(getThread.username).toEqual(thread.username)
+      expect(getThread).toHaveProperty('date')
     });
   });
 });

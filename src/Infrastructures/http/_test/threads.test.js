@@ -142,6 +142,7 @@ describe('/threads endpoint', () => {
           const threadId = 'thread-123'
           const server = await createServer(container);
 
+          await UsersTableTestHelper.addUser({ id: 'user-123' })
           await ThreadsTableTestHelper.addThread({ id: threadId })
           await CommentsTableTestHelper.addComment({})
     

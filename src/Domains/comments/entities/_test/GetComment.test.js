@@ -13,7 +13,7 @@ describe('GetComment entities', () => {
         // Arrange
         const payload = {
             id: 999,
-            username: false,
+            username: [],
             date: 123,
             content: 456,
             is_deleted: 123
