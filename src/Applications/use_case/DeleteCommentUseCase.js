@@ -16,7 +16,7 @@ class DeleteCommentUseCase {
     _validatePayload(payload) {
       const { id, owner } = payload;
       if (!id || !owner) {
-        throw new Error('DELETE_COMMENT_USE_CASE.NOT_CONTAIN_REFRESH_TOKEN');
+        throw new Error('DELETE_COMMENT_USE_CASE.NOT_CONTAIN_NEEDED_PROPERTY');
       }
   
       if (typeof id !== 'string' || typeof owner !== 'string') {

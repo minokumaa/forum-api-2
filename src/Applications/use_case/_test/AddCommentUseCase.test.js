@@ -34,15 +34,15 @@ describe('AddCommentUseCase', () => {
 
     /** creating use case instance */
     const addCommentUseCase = new AddCommentUseCase({
-      threadRepository: mockCommentRepository,
-      commentRepository: mockThreadRepository,
+      threadRepository: mockThreadRepository,
+      commentRepository: mockCommentRepository,
     });
 
     // Action
     const addedComment = await addCommentUseCase.execute(useCasePayload);
 
     // Assert
-    expect(addedComment).toStrictEqual(new AddedThread({
+    expect(addedComment).toStrictEqual(new AddedComment({
       id: 'user-123',
       content: useCasePayload.content,
       owner: useCasePayload.owner,

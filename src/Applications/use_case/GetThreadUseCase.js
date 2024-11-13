@@ -5,22 +5,13 @@ class GetThreadUseCase {
   }
 
   async execute (useCasePayload) {
-    await this._threadRepository.verifyAvailableThread(useCasePayload.threadId)
-    const thread = await this._threadRepository.getThreadById(useCasePayload.threadId)
-    const comments = await this._commentRepository.getCommentsByThreadId(useCasePayload.threadId)
+    await this._threadRepository.verifyAvailableThread(useCasePayload.id)
+    const thread = await this._threadRepository.getThreadById(useCasePayload.id)
+    const comments = await this._commentRepository.getCommentsByThreadId(useCasePayload.id)
 
-    thread.comments = comments.map((comment) => {
-        if (comment.is_deleted === true) {
-          comment.content = '**komentar telah dihapus**'
-        }
-        return {
-          id: comment.id,
-          username: comment.username,
-          date: comment.date,
-          content: comment.content
-        }
-    })
-  
+    if (comments.length > 0) {
+      thread.comments = comments.map((comment) => new GetThreadComment(comment));
+    }
     return thread
   }
 }

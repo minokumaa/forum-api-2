@@ -11,10 +11,10 @@ describe('DeleteCommentUseCase', () => {
       // Action & Assert
       await expect(deleteCommentUseCase.execute(useCasePayload))
         .rejects
-        .toThrowError('DELETE_COMMENT_USE_CASE.NOT_CONTAIN_REFRESH_TOKEN');
+        .toThrowError('DELETE_COMMENT_USE_CASE.NOT_CONTAIN_NEEDED_PROPERTY');
     });
   
-    it('should throw error if refresh token not string', async () => {
+    it('should throw error if payload not string', async () => {
       // Arrange
       const useCasePayload = {
         id: 123,

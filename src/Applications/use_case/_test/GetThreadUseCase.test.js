@@ -45,7 +45,7 @@ describe('GetThreadUseCase', () => {
     /** creating use case instance */
     const getThreadUseCase = new GetThreadUseCase({
       threadRepository: mockThreadRepository,
-      CommentRepository: mockCommentRepository
+      commentRepository: mockCommentRepository
     });
 
     // Action
@@ -109,7 +109,7 @@ describe('GetThreadUseCase', () => {
     /** creating use case instance */
     const getThreadUseCase = new GetThreadUseCase({
       threadRepository: mockThreadRepository,
-      CommentRepository: mockCommentRepository
+      commentRepository: mockCommentRepository
     });
 
     // Action
