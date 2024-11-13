@@ -192,7 +192,7 @@ describe('ThreadRepositoryPostgres', () => {
       const commentRepositoryPostgres = new CommentRepositoryPostgres(pool, {});
 
       // Action
-      const getComment = await commentRepositoryPostgres.getCommentsByThreadId('comment-123')
+      const getComment = await commentRepositoryPostgres.getCommentsByThreadId('thread-123')
 
       // Assert
       expect(getComment.id).toEqual(comment.id)
