@@ -27,7 +27,7 @@ class ThreadHandler {
 
   async getThreadHandler(request, h) {
     const getThreadUseCase = this._container.getInstance(GetThreadUseCase.name);
-    const { id: threadId } = request.params;
+    const { threadId } = request.params;
     const thread = await getThreadUseCase.execute({
       id: threadId
     })
@@ -45,7 +45,7 @@ class ThreadHandler {
   async postCommentHandler(request, h) {
     const addCommentUseCase = this._container.getInstance(AddCommentUseCase.name);
     const { id: credentialId } = request.auth.credentials;
-    const { id: threadId } = request.params;
+    const { threadId } = request.params;
     const addedComment = await addCommentUseCase.execute({
       ...request.payload,
       thread: threadId,
