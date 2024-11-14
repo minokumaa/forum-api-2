@@ -137,7 +137,7 @@ describe('/threads endpoint', () => {
 
           // comment
           const requestPayload = {
-            content: 123,
+            content: 'content',
           };
     
           // Action
@@ -150,7 +150,7 @@ describe('/threads endpoint', () => {
           // Assert
           const responseJson = JSON.parse(response.payload);
           expect(response.statusCode).toEqual(401);
-          expect(responseJson.status).toEqual('Unauthorize');
+          expect(responseJson.error).toEqual('Unauthorized');
           expect(responseJson.message).toEqual('Missing authentication');
         });
     });

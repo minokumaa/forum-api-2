@@ -23,6 +23,7 @@ describe('/threads endpoint', () => {
           const server = await createServer(container);
 
           // user
+          await UsersTableTestHelper.addUser({ id: 'user-123' })
           const { accessToken } = await ServerTestHelper.getAccessToken({ server });
 
           // thread
@@ -131,7 +132,7 @@ describe('/threads endpoint', () => {
           // Assert
           const responseJson = JSON.parse(response.payload);
           expect(response.statusCode).toEqual(401);
-          expect(responseJson.status).toEqual('Unauthorize');
+          expect(responseJson.error).toEqual('Unauthorized');
           expect(responseJson.message).toEqual('Missing authentication');
         });
     });

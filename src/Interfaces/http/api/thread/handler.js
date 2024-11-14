@@ -62,13 +62,14 @@ class ThreadHandler {
     return response;
   }
 
-  async deleteCommentHandler(request) {
+  async deleteCommentHandler(request, h) {
     const deleteCommentUseCase = this._container.getInstance(DeleteCommentUseCase.name);
     const { id: credentialId } = request.auth.credentials;
-    const { id: commentId } = request.params;
+    const { commentId, threadId } = request.params;
     await deleteCommentUseCase.execute({
       id: commentId,
-      owner: credentialId
+      owner: credentialId,
+      thread: threadId
     });
 
     const response = h.response({
