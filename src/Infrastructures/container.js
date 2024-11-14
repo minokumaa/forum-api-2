@@ -111,7 +111,7 @@ container.register([
         }
       ]
     }
-  },
+  }
 ])
 
 // registering use cases
@@ -248,10 +248,10 @@ container.register([
         {
           name: 'commentRepository',
           internal: CommentRepository.name
-        },
+        }
       ]
     }
-  },
+  }
 ])
 
 module.exports = container

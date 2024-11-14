@@ -51,7 +51,7 @@ const createServer = async (container) => {
     {
       plugin: threads,
       options: { container }
-    },
+    }
   ])
 
   server.ext('onPreResponse', (request, h) => {
