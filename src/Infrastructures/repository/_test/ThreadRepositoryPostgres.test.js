@@ -122,7 +122,7 @@ describe('ThreadRepositoryPostgres', () => {
       }
       await ThreadTableTestHelper.addThread(thread)
       const threadRepositoryPostgres = new ThreadRepositoryPostgres(pool, {});
-      const getThread = threadRepositoryPostgres.getThreadById('thread-123')
+      const getThread = await threadRepositoryPostgres.getThreadById('thread-123')
 
       // Action & Assert
       expect(getThread.id).toEqual(thread.id)

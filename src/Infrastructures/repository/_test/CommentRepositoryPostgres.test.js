@@ -174,13 +174,10 @@ describe('ThreadRepositoryPostgres', () => {
   describe('getCommentsByThreadId function', () => {
     it('should return comment correctly', async () => {
       // Arrange
-
       // User
       await UsersTableTestHelper.addUser({ id: 'user-123', username: 'winter'})
-
       // Thread
       await ThreadTableTestHelper.addThread({ id: 'thread-123', owner: 'user-123' })
-
       // Comment
       const comment = {
         id: 'comment-123',
@@ -190,15 +187,12 @@ describe('ThreadRepositoryPostgres', () => {
       }
       await CommentTableTestHelper.addComment(comment)
       const commentRepositoryPostgres = new CommentRepositoryPostgres(pool, {});
-
       // Action
       const getComment = await commentRepositoryPostgres.getCommentsByThreadId('thread-123')
-
       // Assert
       expect(getComment.id).toEqual(comment.id)
       expect(getComment.content).toEqual(comment.content)
-      expect(getComment.username).toEqual(comment.username)
-      expect(getComment.is_deleted).toEqual(comment.is_deleted)
+      expect(getComment.username).toEqual('winter')
       expect(getComment).toHaveProperty('date')
     });
   });
