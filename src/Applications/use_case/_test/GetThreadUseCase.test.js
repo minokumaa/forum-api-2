@@ -23,13 +23,22 @@ describe('GetThreadUseCase', () => {
       username: 'winter'
     })
 
-    const mockGetComment = new GetComment({
-      id: 'comment-123',
-      username: 'winter',
-      date: '2024',
-      content: 'content',
-      is_deleted: false
-    })
+    const mockGetComment = [
+      new GetComment({
+        id: 'comment-123',
+        username: 'winter',
+        date: '2024',
+        content: 'content',
+        is_deleted: false
+      }),
+      new GetComment({
+        id: 'comment-234',
+        username: 'winter',
+        date: '2024',
+        content: 'content',
+        is_deleted: false
+      })
+    ]
 
     /** creating dependency of use case */
     const mockThreadRepository = new ThreadRepository()
@@ -49,26 +58,13 @@ describe('GetThreadUseCase', () => {
       commentRepository: mockCommentRepository
     })
 
+    mockGetThread.comments = mockGetComment.map((comment) => new GetComment(comment))
+
     // Action
     const getThread = await getThreadUseCase.execute(useCasePayload)
 
     // Assert
-    expect(getThread).toStrictEqual(new GetThread({
-      id: 'thread-123',
-      title: 'title',
-      body: 'body',
-      date: '2024',
-      username: 'winter',
-      comments: [
-        {
-          id: 'comment-123',
-          username: 'winter',
-          date: '2024',
-          content: 'content',
-          is_deleted: false
-        }
-      ]
-    }))
+    expect(getThread).toStrictEqual(mockGetThread)
     expect(mockThreadRepository.getThreadById).toBeCalledWith(mockGetThread.id)
     expect(mockCommentRepository.getCommentsByThreadId).toBeCalledWith(mockGetThread.id)
   })

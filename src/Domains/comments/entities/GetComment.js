@@ -5,7 +5,11 @@ class GetComment {
     this.id = payload.id
     this.username = payload.username
     this.date = payload.date
-    this.content = payload.is_deleted === true ? '**komentar telah dihapus**' : payload.content
+    if (payload.is_deleted === true) {
+      this.content = '**komentar telah dihapus**'
+    } else {
+      this.content = payload.content
+    }
   }
 
   _verifyPayload ({ id, username, date, content }) {
