@@ -185,10 +185,10 @@ describe('ThreadRepositoryPostgres', () => {
       // Action
       const getComment = await commentRepositoryPostgres.getCommentsByThreadId('thread-123')
       // Assert
-      expect(getComment.id).toEqual(comment.id)
-      expect(getComment.content).toEqual(comment.content)
-      expect(getComment.username).toEqual('winter')
-      expect(getComment).toHaveProperty('date')
+      expect(getComment[0].id).toEqual(comment.id)
+      expect(getComment[0].content).toEqual(comment.content)
+      expect(getComment[0].username).toEqual('winter')
+      expect(getComment[0]).toHaveProperty('date')
     })
   })
 })
